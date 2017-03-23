@@ -1,5 +1,6 @@
 ﻿using System;
 using Common.DAL.UnitOfWork;
+using Common.DAL.UnitOfWork.DbContext;
 
 namespace Common.OData.Controllers
 {

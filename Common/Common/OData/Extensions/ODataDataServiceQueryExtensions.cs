@@ -3,7 +3,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.OData.Client;
 
-namespace Common.OData
+namespace Common.OData.Extensions
 {
     public static class ODataDataServiceQueryExtensions
     {

@@ -115,14 +115,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL\Repository\DbContextRepository.cs" />
-    <Compile Include="DAL\Repository\IDbContextRepository.cs" />
-    <Compile Include="DAL\Repository\IDbContextRepository`1.cs" />
-    <Compile Include="DAL\Repository\IRepository`1.cs" />
+    <Compile Include="DAL\Repository\DbContext\DbContextRepository.cs" />
+    <Compile Include="DAL\Repository\DbContext\IDbContextRepository.cs" />
+    <Compile Include="DAL\Repository\DbContext\IDbContextRepositoryOfT.cs" />
     <Compile Include="DAL\Repository\IRepository.cs" />
-    <Compile Include="DAL\UnitOfWork\IDbContextUnitOfWork.cs" />
-    <Compile Include="DAL\UnitOfWork\IDbContextUnitOfWork`1.cs" />
-    <Compile Include="DAL\UnitOfWork\DbContextUnitOfWork.cs" />
+    <Compile Include="DAL\Repository\IRepositoryOfT.cs" />
+    <Compile Include="DAL\Repository\OData\IODataRepository.cs" />
+    <Compile Include="DAL\Repository\OData\IODataRepositoryOfT.cs" />
+    <Compile Include="DAL\Repository\OData\ODataRepository.cs" />
+    <Compile Include="DAL\Repository\RepositoryOfT.cs" />
+    <Compile Include="DAL\UnitOfWork\DbContext\DbContextUnitOfWork.cs" />
+    <Compile Include="DAL\UnitOfWork\DbContext\IDbContextUnitOfWork.cs" />
+    <Compile Include="DAL\UnitOfWork\DbContext\IDbContextUnitOfWorkOfT.cs" />
+    <Compile Include="DAL\UnitOfWork\IUnitOfWork.cs" />
+    <Compile Include="DAL\UnitOfWork\OData\IODataUnitOfWork.cs" />
+    <Compile Include="DAL\UnitOfWork\OData\ODataUnitOfWork.cs" />
     <Compile Include="Extensions\ModelStateDictionaryExtensions.cs" />
     <Compile Include="Extensions\HttpRequestBaseExtensions.cs" />
     <Compile Include="Extensions\TimeSpanExtensions.cs" />
@@ -138,9 +145,7 @@
     <Compile Include="OData\Controllers\DbContextUnitOfWorkODataController.cs" />
     <Compile Include="OData\Controllers\BaseODataController.cs" />
     <Compile Include="OData\Extensions\ODataDataServiceQueryExtensions.cs" />
-    <Compile Include="OData\IODataUnitOfWork.cs" />
     <Compile Include="OData\ODataError.cs" />
-    <Compile Include="OData\ODataUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

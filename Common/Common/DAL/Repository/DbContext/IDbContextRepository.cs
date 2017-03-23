@@ -1,4 +1,4 @@
-﻿namespace Common.DAL.Repository
+﻿namespace Common.DAL.Repository.DbContext
 {
     public interface IDbContextRepository : IRepository
     {

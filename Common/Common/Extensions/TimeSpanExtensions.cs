@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,9 +10,9 @@ namespace Common.Extensions
 {
     public static class TimeSpanExtensions
     {
-        public static string ToUserFriendlyString(this TimeSpan timeSpan)
+        public static string ToUserFriendlyString(this TimeSpan timeSpan, CultureInfo cultureInfo)
         {
-            return TimeSpanHelper.Current.ConvertTimeSpanToUserFriendlyString(timeSpan);
+            return TimeSpanHelper.Current.ConvertTimeSpanToUserFriendlyString(timeSpan, cultureInfo);
         }
     }
 }

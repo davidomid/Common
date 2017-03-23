@@ -1,38 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
-using Common.DAL.Repository;
+using Common.DAL.Repository.DbContext;
 
-namespace Common.DAL.UnitOfWork
+namespace Common.DAL.UnitOfWork.DbContext
 {
-    public class DbContextUnitOfWork<C> : IDbContextUnitOfWork<C> where C : DbContext, new()
+    public class DbContextUnitOfWork<C> : IDbContextUnitOfWork<C> where C : System.Data.Entity.DbContext
     {
         private readonly Dictionary<Type, IDbContextRepository> _genericRepositories =
             new Dictionary<Type, IDbContextRepository>();
 
+        protected readonly C Context;
         private bool _disposed;
 
-        public DbContextUnitOfWork()
+        public DbContextUnitOfWork(C context)
         {
-            this.Context = new C();
+            this.Context = context;
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             this.Dispose(true);
             GC.SuppressFinalize(this);
         }
 
-        public void Save()
+        public virtual int Save()
         {
-            this.SaveAsync().Wait();
+            return this.Context.SaveChanges();
         }
 
-        public async Task<int> SaveAsync()
+        void IUnitOfWork.Save()
+        {
+            this.Save();
+        }
+
+        public virtual void Dispose(bool disposing)
+        {
+            if (!this._disposed)
+            {
+                if (disposing)
+                {
+                    this.Context.Dispose();
+                }
+            }
+            this._disposed = true;
+        }
+
+        public virtual async Task<int> SaveAsync()
         {
             try
             {
@@ -60,20 +77,6 @@ namespace Common.DAL.UnitOfWork
                 }
             }
             return 0;
-        }
-
-        public C Context { get; }
-
-        public virtual void Dispose(bool disposing)
-        {
-            if (!this._disposed)
-            {
-                if (disposing)
-                {
-                    this.Context.Dispose();
-                }
-            }
-            this._disposed = true;
         }
 
         public virtual IDbContextRepository<T> GetGenericRepository<T>() where T : class
